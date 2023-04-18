@@ -4,7 +4,7 @@ namespace App\Model;
 
 class ChavePixModel extends Model
 {
-    public $id, $chave, $tipo, $id_conta;
+    public $Id, $Chave, $Tipo, $Ativo, $Id_Conta;
 
     
 }

@@ -17,7 +17,7 @@ abstract class Controller
         exit(json_encode($data));
     }
 
-    public static function getExceptionAsJSON(Exception $e)
+    public static function GetExceptionAsJSON(Exception $e)
     {
         $exception = [
             'message' => $e->getMessage(),
@@ -39,19 +39,19 @@ abstract class Controller
         exit(json_encode($exception));
     }
 
-    protected static function isGet()
+    protected static function IsGet()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') 
             throw new Exception("O método de requisição deve ser GET");
     }
 
-    protected static function isPost()
+    protected static function IsPost()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') 
             throw new Exception("O método de requisição deve ser POST");
     }
 
-    protected static function getIntFromUrl($var_get, $var_name = null) : int
+    protected static function GetIntFromUrl($var_get, $var_name = null) : int
     {
         self::isGet();
 
@@ -61,7 +61,7 @@ abstract class Controller
             throw new Exception("Variável $var_name não identificada.");
     }
 
-    protected static function getStringFromUrl($var_get, $var_name = null) : string
+    protected static function GetStringFromUrl($var_get, $var_name = null) : string
     {
         self::isGet();
 
@@ -71,7 +71,7 @@ abstract class Controller
             throw new Exception("Variável $var_name não identificada.");
     }
 
-    protected static function setResponseAsJSON($data, $request_status = true)
+    protected static function SetResponseAsJSON($data, $request_status = true)
     {
         $response = array('response_data' => $data, 'response_sucess' => $request_status);
 
