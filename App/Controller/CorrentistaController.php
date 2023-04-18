@@ -29,4 +29,16 @@ class CorrentistaController extends Controller
             parent::GetExceptionAsJSON($e);
         }
     }
+
+    public static function DesativarCorrentista()
+    {
+        try 
+        {
+            
+        } 
+        catch (Exception $e) 
+        {
+            parent::GetExceptionAsJSON($e);
+        }
+    }
 }

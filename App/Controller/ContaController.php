@@ -41,4 +41,16 @@ class ContaController extends Controller
             parent::GetExceptionAsJSON($e);
         }
     }
+
+    public static function DesativarConta()
+    {
+        try 
+        {
+            
+        } 
+        catch (Exception $e) 
+        {
+            parent::GetExceptionAsJSON($e);
+        }
+    }
 }

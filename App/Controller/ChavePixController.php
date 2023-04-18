@@ -17,4 +17,16 @@ class ChavePixController extends Controller
             parent::GetExceptionAsJSON($e);
         }
     }
+
+    public static function DesativarChavePix()
+    {
+        try 
+        {
+            
+        } 
+        catch (Exception $e) 
+        {
+            parent::GetExceptionAsJSON($e);
+        }
+    }
 }
