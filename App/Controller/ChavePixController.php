@@ -18,7 +18,7 @@ class ChavePixController extends Controller
         }
     }
 
-    public static function DesativarChavePix()
+    public static function ExcluirChavePix()
     {
         try 
         {
