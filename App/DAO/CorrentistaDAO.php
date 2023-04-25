@@ -46,4 +46,16 @@ class CorrentistaDAO extends DAO
             throw new Exception($e->getMessage());
         }
     }
+
+    /*public function SelectUserAndSenha($json_obj)
+    {
+        $sql = 'SELECT * FROM correntista WHERE cpf = ? AND senha = sha1(?);';
+        $stmt = $this->conexao->prepare($sql);
+
+        $stmt->bindValue(1, $json_obj->Cpf);
+        $stmt->bindValue(2, $json_obj->Senha);
+        $stmt->execute();
+
+        return $stmt->fetchObject('App\Model\LoginModel');
+    }*/
 }

@@ -10,9 +10,9 @@ switch ($url)
         CorrentistaController::Save();
         break;
 
-    case '/correntista/entrar':
-        CorrentistaController::Entrar();
-        break;
+    /*case '/correntista/login':
+        CorrentistaController::Login();
+        break;*/
 
     case 'conta/pix/enviar':
         ContaController::EnviarPix();
