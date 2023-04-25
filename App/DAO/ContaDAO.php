@@ -34,7 +34,7 @@ class ContaDAO extends DAO
 
     public function Update()
     {
-
+        
     }
 
     public function DesativarConta(ContaModel $model)

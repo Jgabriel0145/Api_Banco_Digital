@@ -37,6 +37,13 @@ class CorrentistaDAO extends DAO
 
     public function Update()
     {
+        try
+        {
 
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
     }
 }
