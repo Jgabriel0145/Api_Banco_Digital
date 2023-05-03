@@ -84,4 +84,10 @@ abstract class Controller
         exit(json_encode($response));
     }
 
+    protected static function LogError(Exception $e)
+    {
+        $f = fopen("erros.txt", "w");
+        fwrite($f, $e->getTraceAsString());
+    }
+
 }

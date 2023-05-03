@@ -6,13 +6,13 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($url)
 {
-    case '/correntista/save':
+    /*case '/correntista/save':
         CorrentistaController::Save();
         break;
 
     /*case '/correntista/login':
         CorrentistaController::Login();
-        break;*/
+        break;
 
     case 'conta/pix/enviar':
         ContaController::EnviarPix();
@@ -24,7 +24,7 @@ switch ($url)
 
     case 'conta/extrato':
         ContaController::Extrato();
-        break;
+        break;*/
 
     default:
         http_response_code(403);

@@ -12,19 +12,22 @@ class ContaDAO extends DAO
         parent::__construct();
     }
 
-    public function Insert(ContaModel $model)
+    public function Insert(ContaModel $model) : ContaModel
     {
         try 
         {
-            $sql = "INSERT INTO conta(numero, tipo, senha, ativo) VALUES (?, SHA1(?), ?, ?);";
+            $sql = "INSERT INTO conta(numero, tipo, senha, ativo, id_correntista) VALUES (?, SHA1(?), ?, ?, ?);";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $model->Numero);
             $stmt->bindValue(2, $model->Tipo);
             $stmt->bindValue(3, $model->Senha);
             $stmt->bindValue(4, $model->Ativo);
-
+            $stmt->bindValue(5, $model->Id_correntista);
             $stmt->execute();
+
+            $model->Id = $this->conexao->lastInsertId();
+            return $model;
         } 
         catch (Exception $e)
         {
@@ -32,18 +35,72 @@ class ContaDAO extends DAO
         }
     }
 
-    public function Update()
+    public function Select() : array
     {
-        
-    }
-
-    public function DesativarConta(ContaModel $model)
-    {
-        $sql = "UPDATE INTO conta SET ativo = ? WHERE id = ?";
+        try
+        {
+            $sql = 'SELECT * FROM conta';
 
         $stmt = $this->conexao->prepare($sql);
+        $stmt->execute();
 
-        $stmt->bindValue(1, $model->Ativo);
-        $stmt->bindValue(2, $model->Id);
+        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
     }
+
+    public function Search(string $query) : array
+    {
+        try
+        {    
+            $str_query = ['filtro' => '%' . $query . '%'];
+
+            $sql = 'SELECT * FROM conta WHERE numero LIKE :filtro';
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute($str_query);
+
+            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
+        }
+        
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function Update(ContaModel $model) : bool
+    {
+        try 
+        {
+            $sql = "UPDATE conta SET numero=?, tipo=?, senha=SHA1(?), ativo=?, id_correntista=?";
+            
+            $stmt = $this->conexao->prepare($sql);
+            
+            $stmt->bindValue(1, $model->Numero);
+            $stmt->bindValue(1, $model->Tipo);
+            $stmt->bindValue(1, $model->Senha);
+            $stmt->bindValue(1, $model->Ativo);
+            $stmt->bindValue(1, $model->Id_correntista);
+
+            return $stmt->execute();
+        } 
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    /*public function Delete(int $id) : bool
+    {
+        $sql = "DELETE FROM conta WHERE id = ?";
+
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(1, $id);
+
+        return $stmt->execute();
+    }*/
 }

@@ -6,26 +6,27 @@ use App\DAO\ContaDAO;
 
 class ContaModel extends Model
 {
-    public $Id, $Numero, $Tipo, $Senha, $Ativo;
+    public $Id, $Numero, $Tipo, $Senha, $Ativo, $Id_correntista;
 
     public function Save()
     {
         $dao = new ContaDAO();
 
-        if(empty($this->Id))
-        {
-            $dao->Insert($this);
-
-        } else {
-
-            $dao->Update($this);
-        } 
+        if($this->Id == null)
+            return (new ContaDAO())->insert($this); 
+        else 
+            return (new ContaDAO())->update($this);
     }
 
-    public function DesativarConta()
+    public function GetAllRows(string $query = null)
     {
         $dao = new ContaDAO();
-        
-        $dao->DesativarConta($this);
+
+        $this->rows = ($query == null) ? $dao->Select() : $dao->Search($query);
     }
+
+    /*public function Delete(int $id)
+    {
+        (new ContaDAO())->Delete($id);
+    }*/
 }
