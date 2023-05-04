@@ -22,10 +22,6 @@ switch ($url)
         CorrentistaController::Delete();
         break;*/
 
-    /*case '/correntista/save':
-        CorrentistaController::Save();
-        break;
-
     /*case '/correntista/login':
         CorrentistaController::Login();
         break;
