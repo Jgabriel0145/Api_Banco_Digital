@@ -41,10 +41,10 @@ class ContaDAO extends DAO
         {
             $sql = 'SELECT * FROM conta';
 
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute();
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute();
 
-        return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
+            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
         }
         catch (Exception $e)
         {
@@ -76,15 +76,16 @@ class ContaDAO extends DAO
     {
         try 
         {
-            $sql = "UPDATE conta SET numero=?, tipo=?, senha=SHA1(?), ativo=?, id_correntista=?";
+            $sql = "UPDATE conta SET numero=?, tipo=?, senha=SHA1(?), ativo=?, id_correntista=? WHERE id=?";
             
             $stmt = $this->conexao->prepare($sql);
             
             $stmt->bindValue(1, $model->Numero);
-            $stmt->bindValue(1, $model->Tipo);
-            $stmt->bindValue(1, $model->Senha);
-            $stmt->bindValue(1, $model->Ativo);
-            $stmt->bindValue(1, $model->Id_correntista);
+            $stmt->bindValue(2, $model->Tipo);
+            $stmt->bindValue(3, $model->Senha);
+            $stmt->bindValue(4, $model->Ativo);
+            $stmt->bindValue(5, $model->Id_correntista);
+            $stmt->bindValue(6, $model->Id);
 
             return $stmt->execute();
         } 

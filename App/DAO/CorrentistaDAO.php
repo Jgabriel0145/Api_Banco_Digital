@@ -13,21 +13,23 @@ class CorrentistaDAO extends DAO
         parent::__construct();
     }
 
-    public function Insert(CorrentistaModel $model)
+    public function Insert(CorrentistaModel $model) : CorrentistaModel
     {
         try 
         {
-            $sql = "INSERT INTO conta(nome, cpf, data_nasc, senha, ativo, id_conta) VALUES (?, ?, ?, SHA1(?), ?, ?);";
+            $sql = "INSERT INTO correntista(nome, cpf, data_nasc, email, senha, ativo) VALUES (?, ?, ?, ?, SHA1(?), ?);";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $model->Nome);
             $stmt->bindValue(2, $model->Cpf);
             $stmt->bindValue(3, $model->Data_Nasc);
-            $stmt->bindValue(4, $model->Senha);
-            $stmt->bindValue(5, $model->Ativo);
-            $stmt->bindValue(6, $model->Id_Conta);
-
+            $stmt->bindValue(4, $model->Email);
+            $stmt->bindValue(5, $model->Senha);
+            $stmt->bindValue(6, $model->Ativo);
             $stmt->execute();
+
+            $model->Id = $this->conexao->lastInsertId();
+            return $model;
         } 
         catch (Exception $e)
         {
@@ -35,11 +37,76 @@ class CorrentistaDAO extends DAO
         }
     }
 
-    public function Update()
+    public function Update(CorrentistaModel $model) : bool
     {
         try
         {
+            $sql = "UPDATE correntista SET nome=?, cpf=?, data_nasc=?, email=?, senha=SHA1(?), ativo=? WHERE id=?";
 
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->bindValue(1, $model->Nome);
+            $stmt->bindValue(2, $model->Cpf);
+            $stmt->bindValue(3, $model->Data_Nasc);
+            $stmt->bindValue(4, $model->Email);
+            $stmt->bindValue(5, $model->Senha);
+            $stmt->bindValue(6, $model->Ativo);
+            $stmt->bindValue(7, $model->Id);
+
+            return $stmt->execute();
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function Select() : array
+    {
+        try
+        {
+            $sql = 'SELECT * FROM correntista';
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\CorrentistaModel');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function Search(string $query) : array
+    {
+        try
+        {
+            $str_query = ['filtro' => '%' . $query . '%'];
+
+            $sql = 'SELECT * FROM correntista WHERE nome LIKE :filtro';
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->execute($str_query);
+
+            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\CorrentistaModel');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function Delete(int $id) : bool
+    {
+        try
+        {
+            $sql = 'DELETE FROM correntista WHERE id = ?';
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(1, $id);
+
+            return $stmt->execute();
         }
         catch (Exception $e)
         {

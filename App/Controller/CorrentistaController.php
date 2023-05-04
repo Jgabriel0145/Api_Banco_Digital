@@ -20,15 +20,66 @@ class CorrentistaController extends Controller
             $model->Data_Nasc = $json_obj->Data_Nasc;
             $model->Senha = $json_obj->Senha;
             $model->Ativo = $json_obj->Ativo;
-            $model->Id_Conta = $json_obj->Id_Conta;
 
-            $model->Save();
+            parent::GetResponseAsJSON($model->Save());
         } 
         catch (Exception $e)
         {
+            parent::LogError($e);
             parent::GetExceptionAsJSON($e);
         }
     }
+
+    public static function List() : void
+    {
+        try
+        {
+            $model = new CorrentistaModel();
+
+            $model->GetAllRows();
+
+            parent::GetResponseAsJSON($model->rows);
+        }
+        catch (Exception $e)
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }
+
+    public static function Search() : void
+    {
+        try
+        {
+            $model = new CorrentistaModel();
+
+            $q = json_decode(file_get_contents('php://input'));
+
+            $model->GetAllRows($q);
+
+            parent::GetResponseAsJSON($model->rows);
+        }
+        catch (Exception $e)
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }
+
+    /*public static function Delete() : void
+    {
+        try
+        {
+            $id = json_decode(file_get_contents('php://input'));
+
+            (new CorrentistaModel())->Delete ( (int) $id);
+        }
+        catch (Exception $e)
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }*/
 
     /*public static function Login()
     {
@@ -43,7 +94,7 @@ class CorrentistaController extends Controller
         {
             parent::GetExceptionAsJSON($e);
         }
-    }*/
+    }
 
     public static function DesativarCorrentista()
     {
@@ -55,5 +106,5 @@ class CorrentistaController extends Controller
         {
             parent::GetExceptionAsJSON($e);
         }
-    }
+    }*/
 }

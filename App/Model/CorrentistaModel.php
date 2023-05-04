@@ -8,20 +8,28 @@ use App\DAO\CorrentistaDAO;
 
 class CorrentistaModel extends Model
 {
-    public $Id, $Nome, $Cpf, $Data_Nasc, $Senha, $Email, $Ativo, $Id_Conta;
+    public $Id, $Nome, $Cpf, $Data_Nasc, $Senha, $Email, $Ativo;
 
     public function Save()
     {
         $dao = new CorrentistaDAO();
 
-        if(empty($this->Id))
-        {
-            $dao->Insert($this);
+        if($this->Id == null)
+            return (new CorrentistaDAO())->Insert($this);
+        else
+            return (new CorrentistaDAO())->Update($this);
+    }
 
-        } else {
+    public function GetAllRows(string $query = null)
+    {
+        $dao = new CorrentistaDAO();
 
-            $dao->Update($this);
-        } 
+        $this->rows = ($query == null) ? $dao->Select() : $dao->Search($query);
+    }
+
+    public function Delete(int $id)
+    {
+        (new CorrentistaDAO())->Delete($id);
     }
 
     /*public function SelectUserAndSenha($json_obj)
