@@ -103,5 +103,6 @@ class ContaDAO extends DAO
         $stmt->bindValue(1, $id);
 
         return $stmt->execute();
+        test
     }*/
 }
