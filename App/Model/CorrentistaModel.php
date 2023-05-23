@@ -8,16 +8,11 @@ use App\DAO\CorrentistaDAO;
 
 class CorrentistaModel extends Model
 {
-    public $Id, $Nome, $Cpf, $Data_Nasc, $Senha, $Email, $Ativo;
+    public $Id, $Nome, $Email, $Cpf, $Data_Nasc, $Senha;
 
-    public function Save()
+    public function Save() : ?CorrentistaModel
     {
-        $dao = new CorrentistaDAO();
-
-        if($this->Id == null)
-            return (new CorrentistaDAO())->Insert($this);
-        else
-            return (new CorrentistaDAO())->Update($this);
+        return (new CorrentistaDAO())->Save($this);        
     }
 
     public function GetAllRows(string $query = null)

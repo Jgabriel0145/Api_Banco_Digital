@@ -12,7 +12,7 @@ abstract class DAO extends PDO
     
     public function __construct()
     {
-        try 
+        try
         {
             $options = [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

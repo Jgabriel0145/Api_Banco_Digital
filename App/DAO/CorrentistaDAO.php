@@ -12,12 +12,17 @@ class CorrentistaDAO extends DAO
     {
         parent::__construct();
     }
+    
+    public function Save(CorrentistaModel $model) : CorrentistaModel
+    {
+        return ($model->Id == null) ? $this->Insert($model) : $this->Update($model);
+    }
 
-    public function Insert(CorrentistaModel $model) : CorrentistaModel
+    private function Insert(CorrentistaModel $model)
     {
         try 
         {
-            $sql = "INSERT INTO correntista(nome, cpf, data_nasc, email, senha, ativo) VALUES (?, ?, ?, ?, SHA1(?), ?);";
+            $sql = "INSERT INTO correntista(nome, cpf, data_nasc, email, senha) VALUES (?, ?, ?, ?, SHA1(?));";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $model->Nome);
@@ -25,7 +30,6 @@ class CorrentistaDAO extends DAO
             $stmt->bindValue(3, $model->Data_Nasc);
             $stmt->bindValue(4, $model->Email);
             $stmt->bindValue(5, $model->Senha);
-            $stmt->bindValue(6, $model->Ativo);
             $stmt->execute();
 
             $model->Id = $this->conexao->lastInsertId();
@@ -37,11 +41,11 @@ class CorrentistaDAO extends DAO
         }
     }
 
-    public function Update(CorrentistaModel $model) : bool
+    private function Update(CorrentistaModel $model) : bool
     {
         try
         {
-            $sql = "UPDATE correntista SET nome=?, cpf=?, data_nasc=?, email=?, senha=SHA1(?), ativo=? WHERE id=?";
+            $sql = "UPDATE correntista SET nome=?, cpf=?, data_nasc=?, email=?, senha=SHA1(?) WHERE id=?";
 
             $stmt = $this->conexao->prepare($sql);
 
@@ -50,7 +54,6 @@ class CorrentistaDAO extends DAO
             $stmt->bindValue(3, $model->Data_Nasc);
             $stmt->bindValue(4, $model->Email);
             $stmt->bindValue(5, $model->Senha);
-            $stmt->bindValue(6, $model->Ativo);
             $stmt->bindValue(7, $model->Id);
 
             return $stmt->execute();

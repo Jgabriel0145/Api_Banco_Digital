@@ -15,13 +15,15 @@ class CorrentistaController extends Controller
             $json_obj = json_decode(file_get_contents('php://input'));
 
             $model = new CorrentistaModel();
-            $model->Nome = $json_obj->Nome;
-            $model->Cpf = $json_obj->Cpf;
-            $model->Data_Nasc = $json_obj->Data_Nasc;
-            $model->Senha = $json_obj->Senha;
-            $model->Ativo = $json_obj->Ativo;
+            
+            foreach (get_object_vars($json_obj) as $key => $value)
+            {
+                $prop_letra_minuscula = strtolower($key);
 
-            parent::GetResponseAsJSON($model->Save());
+                $model->$prop_letra_minuscula = $value;
+            }
+
+            parent::SetResponseAsJSON($model->Save());
         } 
         catch (Exception $e)
         {
