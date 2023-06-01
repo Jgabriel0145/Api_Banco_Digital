@@ -5,6 +5,7 @@ namespace App\DAO;
 use Exception;
 
 use App\Model\CorrentistaModel;
+use Error;
 
 class CorrentistaDAO extends DAO
 {
@@ -117,15 +118,25 @@ class CorrentistaDAO extends DAO
         }
     }
 
-    /*public function SelectUserAndSenha($json_obj)
+    public function SelectByCpfAndSenha($Cpf, $Senha) : CorrentistaModel
     {
-        $sql = 'SELECT * FROM correntista WHERE cpf = ? AND senha = sha1(?);';
-        $stmt = $this->conexao->prepare($sql);
+        try
+        {
+            $sql = 'SELECT * FROM correntista WHERE cpf = ? AND senha = SHA1(?);';
+            $stmt = $this->conexao->prepare($sql);
 
-        $stmt->bindValue(1, $json_obj->Cpf);
-        $stmt->bindValue(2, $json_obj->Senha);
-        $stmt->execute();
+            $stmt->bindValue(1, $Cpf);
+            $stmt->bindValue(2, $Senha);
+            $stmt->execute();
 
-        return $stmt->fetchObject('App\Model\LoginModel');
-    }*/
+            $obj = $stmt->fetchObject('App\Model\CorrentistaModel');
+
+            return is_object($obj) ? $obj : new CorrentistaModel();
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+        
+    }
 }

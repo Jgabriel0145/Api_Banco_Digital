@@ -23,7 +23,7 @@ class CorrentistaController extends Controller
                 $model->$prop_letra_minuscula = $value;
             }
 
-            parent::SetResponseAsJSON($model->Save());
+            parent::GetResponseAsJSON($model->Save());
         } 
         catch (Exception $e)
         {
@@ -83,22 +83,24 @@ class CorrentistaController extends Controller
         }
     }*/
 
-    /*public static function Login()
+    public static function Login()
     {
         try 
         {
             $json_obj = json_decode(file_get_contents('php://input'));
 
             $model = new CorrentistaModel();
-            $model->SelectUserAndSenha($json_obj);
+            
+            parent::GetResponseAsJSON($model->GetByCpfAndSenha($json_obj->Cpf, $json_obj->Senha));
         } 
         catch (Exception $e) 
         {
+            parent::LogError($e);
             parent::GetExceptionAsJSON($e);
         }
     }
 
-    public static function DesativarCorrentista()
+    /*public static function DesativarCorrentista()
     {
         try 
         {

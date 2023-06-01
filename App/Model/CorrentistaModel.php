@@ -27,24 +27,8 @@ class CorrentistaModel extends Model
         (new CorrentistaDAO())->Delete($id);
     }
 
-    /*public function SelectUserAndSenha($json_obj)
+    public function GetByCpfAndSenha($Cpf, $Senha) : CorrentistaModel
     {
-        try 
-        {
-            $dao = new CorrentistaDAO();
-
-            $dados_usuario_logado = $dao->SelectUserAndSenha($json_obj);
-
-            if (is_object($dados_usuario_logado))
-                return $dados_usuario_logado;
-            else
-                null; 
-        } 
-        catch (Exception $e) 
-        {
-            throw new Exception($e->getMessage());
-            return false;
-        }
-
-    }*/
+        return (new CorrentistaDAO())->SelectByCpfAndSenha($Cpf, $Senha);
+    }
 }
