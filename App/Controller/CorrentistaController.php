@@ -18,7 +18,7 @@ class CorrentistaController extends Controller
             
             foreach (get_object_vars($json_obj) as $key => $value)
             {
-                $prop_letra_minuscula = strtolower($key);
+                $prop_letra_minuscula = strtolower($key);;
 
                 $model->$prop_letra_minuscula = $value;
             }
