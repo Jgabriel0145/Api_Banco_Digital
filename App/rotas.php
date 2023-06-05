@@ -6,7 +6,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($url)
 {
-    case 'correntista/save':
+    case '/correntista/save':
         CorrentistaController::Save();
         break;
 
@@ -26,15 +26,15 @@ switch ($url)
         CorrentistaController::Login();
         break;
 
-    case 'conta/pix/enviar':
+    case '/conta/pix/enviar':
         ContaController::EnviarPix();
         break;
 
-    case 'conta/pix/receber':
+    case '/conta/pix/receber':
         ContaController::ReceberPix();
         break;
 
-    case 'conta/extrato':
+    case '/conta/extrato':
         ContaController::Extrato();
         break;*/
 

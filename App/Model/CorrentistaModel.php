@@ -8,7 +8,7 @@ use App\DAO\CorrentistaDAO;
 
 class CorrentistaModel extends Model
 {
-    public $Id, $Nome, $Email, $Cpf, $Data_Nasc, $Senha;
+    public $Id, $Nome, $Cpf, $Data_Nasc, $Senha, $Email, $Data_Cadastro;
 
     public function Save() : ?CorrentistaModel
     {
