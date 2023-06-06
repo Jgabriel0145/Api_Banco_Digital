@@ -28,7 +28,7 @@ abstract class Controller
             'previous' => $e->getPrevious()
         ];
 
-        http_response_code(400);
+        //http_response_code(400);
 
         header("Access-Control-Allow-Origin: *");
         header("Content-type: application/json; charset=utf-8");

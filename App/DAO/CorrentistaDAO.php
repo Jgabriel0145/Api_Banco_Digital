@@ -23,8 +23,8 @@ class CorrentistaDAO extends DAO
     {
         try 
         {
-            echo " DAO _____________________________________________________________";
-            var_dump($model);
+            //echo " DAO _____________________________________________________________";
+            //var_dump($model);
             $sql = "INSERT INTO correntista (nome, cpf, data_nasc, email, senha, data_cadastro) VALUES (?, ?, ?, ?, SHA1(?), ?);";
 
             $stmt = $this->conexao->prepare($sql);
@@ -36,14 +36,14 @@ class CorrentistaDAO extends DAO
             $stmt->bindValue(6, $model->Data_Cadastro);
             $stmt->execute();
 
-            echo "";
-            echo "_____________CADASTROU_____________";
-            echo "";
+            //echo "";
+            //echo "_____________CADASTROU_____________";
+            //echo "";
 
             $model->Id = $this->conexao->lastInsertId();
 
-            echo " DAO _____________________________________________________________";
-            var_dump($model);
+            //echo " DAO _____________________________________________________________";
+            //var_dump($model);
 
             return $model;
         } 
