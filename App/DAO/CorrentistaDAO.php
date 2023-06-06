@@ -133,7 +133,7 @@ class CorrentistaDAO extends DAO
     {
         try
         {
-            $sql = 'SELECT * FROM correntista WHERE cpf = ? AND senha = SHA1(?);';
+            $sql = 'SELECT Id, Nome, Cpf, Data_Nasc, Email, Senha, Data_Cadastro FROM correntista WHERE cpf = ? AND senha = SHA1(?);';
             $stmt = $this->conexao->prepare($sql);
 
             $stmt->bindValue(1, $Cpf);
@@ -141,6 +141,10 @@ class CorrentistaDAO extends DAO
             $stmt->execute();
 
             $obj = $stmt->fetchObject('App\Model\CorrentistaModel');
+
+            /*echo "____________________DAO_____________________________________";
+            var_dump($obj);
+            echo "_________________________________________________________";*/
 
             return is_object($obj) ? $obj : new CorrentistaModel();
         }

@@ -18,6 +18,10 @@ switch ($url)
         CorrentistaController::Search();
         break;
 
+    case '/correntista/login':
+        CorrentistaController::Login();
+        break;
+
     /*case '/correntista/delete':
         CorrentistaController::Delete();
         break;*/

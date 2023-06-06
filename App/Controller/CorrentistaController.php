@@ -100,8 +100,15 @@ class CorrentistaController extends Controller
             $json_obj = json_decode(file_get_contents('php://input'));
 
             $model = new CorrentistaModel();
+
+            $model->Cpf = $json_obj->Cpf;
+            $model->Senha = $json_obj->Senha;
+
+            /*echo "_________________COntroller___________________";
+            var_dump($model);
+            echo "________________________Controller_______________________________";*/
             
-            parent::GetResponseAsJSON($model->GetByCpfAndSenha($json_obj->Cpf, $json_obj->Senha));
+            parent::GetResponseAsJSON($model->GetByCpfAndSenha($model->Cpf, $model->Senha));
         } 
         catch (Exception $e) 
         {
