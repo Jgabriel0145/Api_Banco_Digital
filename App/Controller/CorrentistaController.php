@@ -26,12 +26,12 @@ class CorrentistaController extends Controller
                 $model->$prop_letra_minuscula = $value;
             }*/
 
-            $model->Nome = $json_obj->Nome;
-            $model->Cpf = $json_obj->Cpf;
-            $model->Data_Nasc = $json_obj->Data_Nasc;
-            $model->Senha = $json_obj->Senha;
-            $model->Email = $json_obj->Email;
-            $model->Data_Cadastro = $json_obj->Data_Cadastro;
+            $model->nome = $json_obj->nome;
+            $model->cpf = $json_obj->cpf;
+            $model->data_nasc = $json_obj->data_nasc;
+            $model->senha = $json_obj->senha;
+            $model->email = $json_obj->email;
+            $model->data_cadastro = $json_obj->data_cadastro;
 
             parent::GetResponseAsJSON($model->Save());
         } 
@@ -101,14 +101,14 @@ class CorrentistaController extends Controller
 
             $model = new CorrentistaModel();
 
-            $model->Cpf = $json_obj->Cpf;
-            $model->Senha = $json_obj->Senha;
+            $model->cpf = $json_obj->cpf;
+            $model->senha = $json_obj->senha;
 
             /*echo "_________________COntroller___________________";
             var_dump($model);
             echo "________________________Controller_______________________________";*/
             
-            parent::GetResponseAsJSON($model->GetByCpfAndSenha($model->Cpf, $model->Senha));
+            parent::GetResponseAsJSON($model->GetByCpfAndSenha($model->cpf, $model->senha));
         } 
         catch (Exception $e) 
         {

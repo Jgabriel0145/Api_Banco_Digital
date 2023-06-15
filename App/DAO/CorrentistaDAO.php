@@ -16,7 +16,7 @@ class CorrentistaDAO extends DAO
     
     public function Save(CorrentistaModel $model) : CorrentistaModel
     {
-        return ($model->Id == null) ? $this->Insert($model) : $this->Update($model);
+        return ($model->id == null) ? $this->Insert($model) : $this->Update($model);
     }
 
     private function Insert(CorrentistaModel $model)
@@ -28,19 +28,19 @@ class CorrentistaDAO extends DAO
             $sql = "INSERT INTO correntista (nome, cpf, data_nasc, email, senha, data_cadastro) VALUES (?, ?, ?, ?, SHA1(?), ?);";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(1, $model->Nome);
-            $stmt->bindValue(2, $model->Cpf);
-            $stmt->bindValue(3, $model->Data_Nasc);
-            $stmt->bindValue(4, $model->Email);
-            $stmt->bindValue(5, $model->Senha);
-            $stmt->bindValue(6, $model->Data_Cadastro);
+            $stmt->bindValue(1, $model->nome);
+            $stmt->bindValue(2, $model->cpf);
+            $stmt->bindValue(3, $model->data_nasc);
+            $stmt->bindValue(4, $model->email);
+            $stmt->bindValue(5, $model->senha);
+            $stmt->bindValue(6, $model->data_cadastro);
             $stmt->execute();
 
             //echo "";
             //echo "_____________CADASTROU_____________";
             //echo "";
 
-            $model->Id = $this->conexao->lastInsertId();
+            $model->id = $this->conexao->lastInsertId();
 
             //echo " DAO _____________________________________________________________";
             //var_dump($model);
@@ -61,12 +61,12 @@ class CorrentistaDAO extends DAO
 
             $stmt = $this->conexao->prepare($sql);
 
-            $stmt->bindValue(1, $model->Nome);
-            $stmt->bindValue(2, $model->Cpf);
-            $stmt->bindValue(3, $model->Data_Nasc);
-            $stmt->bindValue(4, $model->Email);
-            $stmt->bindValue(5, $model->Senha);
-            $stmt->bindValue(7, $model->Id);
+            $stmt->bindValue(1, $model->nome);
+            $stmt->bindValue(2, $model->cpf);
+            $stmt->bindValue(3, $model->data_nasc);
+            $stmt->bindValue(4, $model->email);
+            $stmt->bindValue(5, $model->senha);
+            $stmt->bindValue(7, $model->id);
 
             return $stmt->execute();
         }
@@ -133,7 +133,7 @@ class CorrentistaDAO extends DAO
     {
         try
         {
-            $sql = 'SELECT Id, Nome, Cpf, Data_Nasc, Email, Senha, Data_Cadastro FROM correntista WHERE cpf = ? AND senha = SHA1(?);';
+            $sql = 'SELECT * FROM correntista WHERE cpf = ? AND senha = SHA1(?);';
             $stmt = $this->conexao->prepare($sql);
 
             $stmt->bindValue(1, $Cpf);
