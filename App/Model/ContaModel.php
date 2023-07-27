@@ -6,13 +6,13 @@ use App\DAO\ContaDAO;
 
 class ContaModel extends Model
 {
-    public $Id, $Numero, $Tipo, $Senha, $Ativo, $Id_correntista;
+    public $id, $tipo, $saldo, $limite, $id_correntista;
 
     public function Save()
     {
         $dao = new ContaDAO();
 
-        if($this->Id == null)
+        if($this->id == null)
             return (new ContaDAO())->insert($this); 
         else 
             return (new ContaDAO())->update($this);

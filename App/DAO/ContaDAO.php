@@ -16,17 +16,16 @@ class ContaDAO extends DAO
     {
         try 
         {
-            $sql = "INSERT INTO conta(numero, tipo, senha, ativo, id_correntista) VALUES (?, SHA1(?), ?, ?, ?);";
+            $sql = "INSERT INTO conta(tipo, saldo, limite, id_correntista) VALUES (?, ?, ?, ?);";
 
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(1, $model->Numero);
-            $stmt->bindValue(2, $model->Tipo);
-            $stmt->bindValue(3, $model->Senha);
-            $stmt->bindValue(4, $model->Ativo);
-            $stmt->bindValue(5, $model->Id_correntista);
+            $stmt->bindValue(1, $model->tipo);
+            $stmt->bindValue(2, $model->saldo);
+            $stmt->bindValue(3, $model->limite);
+            $stmt->bindValue(4, $model->id_correntista);
             $stmt->execute();
 
-            $model->Id = $this->conexao->lastInsertId();
+            $model->id = $this->conexao->lastInsertId();
             return $model;
         } 
         catch (Exception $e)
@@ -76,16 +75,15 @@ class ContaDAO extends DAO
     {
         try 
         {
-            $sql = "UPDATE conta SET numero=?, tipo=?, senha=SHA1(?), ativo=?, id_correntista=? WHERE id=?";
+            $sql = "UPDATE conta SET  id_correntista=? WHERE id=?";
             
             $stmt = $this->conexao->prepare($sql);
             
-            $stmt->bindValue(1, $model->Numero);
-            $stmt->bindValue(2, $model->Tipo);
-            $stmt->bindValue(3, $model->Senha);
-            $stmt->bindValue(4, $model->Ativo);
-            $stmt->bindValue(5, $model->Id_correntista);
-            $stmt->bindValue(6, $model->Id);
+            $stmt->bindValue(1, $model->tipo);
+            $stmt->bindValue(2, $model->saldo);
+            $stmt->bindValue(3, $model->limite);
+            $stmt->bindValue(4, $model->id_correntista);
+            $stmt->bindValue(5, $model->id);
 
             return $stmt->execute();
         } 
