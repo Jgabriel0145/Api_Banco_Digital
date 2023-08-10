@@ -8,4 +8,24 @@ class ChavePixDAO extends DAO
     {
         parent::__construct();
     }
+
+    public function Insert()
+    {
+
+    }
+
+    public function Update()
+    {
+        
+    }
+
+    public function Select()
+    {
+        
+    }
+
+    public function Delete()
+    {
+        
+    }
 }
