@@ -2,22 +2,24 @@
 
 namespace App\Model;
 
+use App\DAO\ChavePixDAO;
+
 class ChavePixModel extends Model
 {
-    public $Id, $Chave, $Tipo, $Ativo, $Id_Conta;
+    public $id, $chave, $tipo, $id_conta;
 
-    public function Save()
+    public function Save() : ?ChavePixModel
     {
-        
+        return (new ChavePixDAO())->Save($this);
     }
 
-    public function GetAllRows()
+    public function GetAllRows(int $id_correntista) : array
     {
-        
+        return (new ChavePixDAO())->Select($id_correntista);        
     }
 
-    public function Delete()
+    public function Delete() : bool
     {
-        
+        return (new ChavePixDAO())->Delete($this);        
     }
 }
