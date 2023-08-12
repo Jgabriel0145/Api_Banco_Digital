@@ -22,25 +22,20 @@ switch ($url)
         CorrentistaController::Login();
         break;
 
-    /*case '/correntista/delete':
-        CorrentistaController::Delete();
-        break;*/
-
-    /*case '/correntista/login':
-        CorrentistaController::Login();
+    
+    case '/chavepix/salvar':
+        ChavePixController::SalvarChavePix();
         break;
 
-    case '/conta/pix/enviar':
-        ContaController::EnviarPix();
+    case '/chavepix/listar':
+        ChavePixController::ListarChavePix();
         break;
 
-    case '/conta/pix/receber':
-        ContaController::ReceberPix();
+    case '/chavepix/excluir':
+        ChavePixController::ExcluirChavePix();
         break;
 
-    case '/conta/extrato':
-        ContaController::Extrato();
-        break;*/
+        
 
     default:
         http_response_code(403);

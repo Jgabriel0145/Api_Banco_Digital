@@ -7,7 +7,7 @@ use Exception;
 
 class ChavePixController extends Controller
 {
-    public static function SalvarChavePix()
+    public static function SalvarChavePix() : void
     {
         try 
         {
@@ -43,7 +43,7 @@ class ChavePixController extends Controller
         }
     }
 
-    public static function ListarChavePix()
+    public static function ListarChavePix() : void
     {
         try 
         {
