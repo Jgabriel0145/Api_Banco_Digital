@@ -35,6 +35,9 @@ class ChavePixController extends Controller
             $json_obj = json_decode(file_get_contents('php://input'));
 
             $model = new ChavePixModel();
+
+            $model->id = $json_obj->id;
+            $model->id_conta = $json_obj->id_conta;
         } 
         catch (Exception $e) 
         {
