@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `db_banco_digital`.`correntista` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `db_banco_digital`.`conta` (
     FOREIGN KEY (`id_correntista`)
     REFERENCES `db_banco_digital`.`correntista` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -61,7 +63,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `db_banco_digital`.`chave_pix` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `chave` VARCHAR(150) NOT NULL,
-  `tipo` VARCHAR(10) NOT NULL,
+  `tipo` ENUM('cpf', 'email', 'telefone', 'personalizada') NOT NULL,
   `id_conta` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `chave_UNIQUE` (`chave` ASC) VISIBLE,
