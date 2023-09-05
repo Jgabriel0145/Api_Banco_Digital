@@ -51,7 +51,9 @@ class ContaController extends Controller
     {
         try
         {
-            $id_correntista = json_decode(file_get_contents('php://input'));
+            $json_obj = json_decode(file_get_contents('php://input'));
+
+            $id_correntista = $json_obj->id;
 
             parent::GetResponseAsJSON((new ContaModel())->SearchCorrente($id_correntista));
         }
@@ -66,7 +68,9 @@ class ContaController extends Controller
     {
         try 
         {
-            $id_correntista = json_decode(file_get_contents('php://input'));
+            $json_obj = json_decode(file_get_contents('php://input'));
+
+            $id_correntista = $json_obj->id;
 
             parent::GetResponseAsJSON((new ContaModel())->SearchPoupanca($id_correntista));
         } 

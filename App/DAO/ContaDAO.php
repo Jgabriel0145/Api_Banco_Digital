@@ -119,7 +119,7 @@ class ContaDAO extends DAO
     {
         try
         {
-            $sql = "SELECT * FROM conta WHERE tipo = 'C' AND id_correntista = ?";
+            $sql = "SELECT * FROM conta WHERE tipo = 'P' AND id_correntista = ?";
 
             $stmt = $this->conexao->prepare($sql);
 

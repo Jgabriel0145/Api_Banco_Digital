@@ -25,11 +25,12 @@ switch ($url)
 
 
     //Conta
-    case 'conta/searchcorrente':
+    case '/conta/searchcorrente':
+       
         ContaController::SearchCorrente();
         break;
 
-    case 'conta/searchpoupanca':
+    case '/conta/searchpoupanca':
         ContaController::SearchPoupanca();
         break;
     
