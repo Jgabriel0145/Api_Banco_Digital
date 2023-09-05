@@ -93,6 +93,50 @@ class ContaDAO extends DAO
         }
     }
 
+    public function SearchCorrente($id_correntista) : ContaModel
+    {
+        try
+        {
+            $sql = "SELECT * FROM conta WHERE tipo = 'C' AND id_correntista = ?";
+
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->bindValue(1, $id_correntista);
+
+            $stmt->execute();
+
+            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'APP\Model\ContaModel');
+
+            return is_object($obj) ? $obj : new ContaModel();
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function SearchPoupanca($id_correntista) : ContaModel
+    {
+        try
+        {
+            $sql = "SELECT * FROM conta WHERE tipo = 'C' AND id_correntista = ?";
+
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->bindValue(1, $id_correntista);
+
+            $stmt->execute();
+
+            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'APP\Model\ContaModel');
+
+            return is_object($obj) ? $obj : new ContaModel();
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
     /*public function Delete(int $id) : bool
     {
         $sql = "DELETE FROM conta WHERE id = ?";

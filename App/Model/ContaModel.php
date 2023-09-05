@@ -13,9 +13,9 @@ class ContaModel extends Model
         $dao = new ContaDAO();
 
         if($this->id == null)
-            return (new ContaDAO())->insert($this); 
+            return (new ContaDAO())->Insert($this); 
         else 
-            return (new ContaDAO())->update($this);
+            return (new ContaDAO())->Update($this);
     }
 
     public function GetAllRows(string $query = null)
@@ -23,6 +23,16 @@ class ContaModel extends Model
         $dao = new ContaDAO();
 
         $this->rows = ($query == null) ? $dao->Select() : $dao->Search($query);
+    }
+
+    public function SearchCorrente($id_correntista) : ContaModel
+    {
+        return (new ContaDAO())->SearchCorrente($id_correntista);
+    }
+
+    public function SearchPoupanca($id_correntista) : ContaModel
+    {
+        return (new ContaDAO())->SearchCorrente($id_correntista);
     }
 
     /*public function Delete(int $id)

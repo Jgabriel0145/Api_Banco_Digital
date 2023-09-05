@@ -47,6 +47,36 @@ class ContaController extends Controller
         }
     }
 
+    public static function SearchCorrente() : void
+    {
+        try
+        {
+            $id_correntista = json_decode(file_get_contents('php://input'));
+
+            parent::GetResponseAsJSON((new ContaModel())->SearchCorrente($id_correntista));
+        }
+        catch (Exception $e)
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }
+
+    public static function SearchPoupanca() : void
+    {
+        try 
+        {
+            $id_correntista = json_decode(file_get_contents('php://input'));
+
+            parent::GetResponseAsJSON((new ContaModel())->SearchPoupanca($id_correntista));
+        } 
+        catch (Exception $e) 
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }
+
     public static function Search() : void
     {
         try
