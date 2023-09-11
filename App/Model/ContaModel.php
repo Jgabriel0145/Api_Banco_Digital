@@ -35,6 +35,11 @@ class ContaModel extends Model
         return (new ContaDAO())->SearchCorrente($id_correntista);
     }
 
+    public function SearchContas($id)
+    {
+        return $this->rows = (new ContaDAO())->SearchContas($id);
+    }
+
     /*public function Delete(int $id)
     {
         (new ContaDAO())->Delete($id);

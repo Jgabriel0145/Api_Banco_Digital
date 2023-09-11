@@ -100,6 +100,25 @@ class ContaController extends Controller
         }
     }
 
+    public static function SearchContas() : void
+    {
+        try
+        {
+            $json_obj = json_decode(file_get_contents('php://input'));
+            
+            $model = new ContaModel();
+
+            $model->SearchContas($json_obj->id);
+
+            parent::GetResponseAsJSON($model->rows);
+        }
+        catch (Exception $e)
+        {
+            parent::LogError($e);
+            parent::GetExceptionAsJSON($e);
+        }
+    }
+
     /*public static function Delete() : void
     {
         try

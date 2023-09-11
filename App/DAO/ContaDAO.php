@@ -137,6 +137,26 @@ class ContaDAO extends DAO
         }
     }
 
+    public function SearchContas($id) : array
+    {
+        try
+        {
+            $sql = "SELECT * FROM conta WHERE id_correntista = ?";
+
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->bindValue(1, $id);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
+        }
+        catch (Exception $e)
+        {
+            throw new Exception($e->getMessage());
+        }
+    }
+
     /*public function Delete(int $id) : bool
     {
         $sql = "DELETE FROM conta WHERE id = ?";

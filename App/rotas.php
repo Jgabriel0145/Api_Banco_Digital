@@ -26,14 +26,19 @@ switch ($url)
 
     //Conta
     case '/conta/searchcorrente':
-       
         ContaController::SearchCorrente();
         break;
 
     case '/conta/searchpoupanca':
         ContaController::SearchPoupanca();
         break;
-    
+
+    case '/conta/searchcontas':
+        ContaController::SearchContas();
+        break;
+
+
+    //Chavepix
     case '/chavepix/salvar':
         ChavePixController::SalvarChavePix();
         break;
@@ -47,7 +52,6 @@ switch ($url)
         break;
 
         
-
     default:
         http_response_code(403);
         break;
