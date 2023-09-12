@@ -110,6 +110,7 @@ class ContaController extends Controller
 
             $model->SearchContas($json_obj->id);
 
+            //var_dump($model->rows);
             parent::GetResponseAsJSON($model->rows);
         }
         catch (Exception $e)

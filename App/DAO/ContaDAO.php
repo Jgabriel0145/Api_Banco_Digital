@@ -75,7 +75,7 @@ class ContaDAO extends DAO
     {
         try 
         {
-            $sql = "UPDATE conta SET  id_correntista=? WHERE id=?";
+            $sql = "UPDATE conta SET id_correntista=? WHERE id=?";
             
             $stmt = $this->conexao->prepare($sql);
             
@@ -105,7 +105,7 @@ class ContaDAO extends DAO
 
             $stmt->execute();
 
-            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'APP\Model\ContaModel');
+            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'App\Model\ContaModel');
 
             return is_object($obj) ? $obj : new ContaModel();
         }
@@ -127,7 +127,7 @@ class ContaDAO extends DAO
 
             $stmt->execute();
 
-            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'APP\Model\ContaModel');
+            $obj = $stmt->fetchObject(DAO::FETCH_CLASS, 'App\Model\ContaModel');
 
             return is_object($obj) ? $obj : new ContaModel();
         }
@@ -149,7 +149,7 @@ class ContaDAO extends DAO
 
             $stmt->execute();
 
-            return $stmt->fetchAll(DAO::FETCH_CLASS, 'App\Model\ContaModel');
+            return $stmt->fetchAll(DAO::FETCH_CLASS);
         }
         catch (Exception $e)
         {
