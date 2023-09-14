@@ -15,12 +15,12 @@ class ChavePixDAO extends DAO
 
     public function Save(ChavePixModel $model) : ?ChavePixModel
     {
-        return ($model->id !== null) ? $this->Insert($model) : $this->Update($model);
+        return ($model->id == null) ? $this->Insert($model) : $this->Update($model);
     }
 
     public function Insert(ChavePixModel $model) : ?ChavePixModel
     {
-        $sql = "INSERT INTO chavepix (chave, tipo, id_conta)";
+        $sql = "INSERT INTO chave_pix (chave, tipo, id_conta) VALUES (?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
 

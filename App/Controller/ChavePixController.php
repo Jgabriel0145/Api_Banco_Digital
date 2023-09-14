@@ -19,6 +19,8 @@ class ChavePixController extends Controller
             $model->tipo = $json_obj->tipo;
             $model->id_conta = $json_obj->id_conta;
 
+            //var_dump($model);
+
             parent::GetResponseAsJSON($model->Save());
         }
         catch (Exception $e)

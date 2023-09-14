@@ -1,7 +1,8 @@
-#0 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\DAO\CorrentistaDAO.php(19): App\DAO\CorrentistaDAO->Insert(Object(App\Model\CorrentistaModel))
-#1 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\Model\CorrentistaModel.php(15): App\DAO\CorrentistaDAO->Save(Object(App\Model\CorrentistaModel))
-#2 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\Controller\CorrentistaController.php(36): App\Model\CorrentistaModel->Save()
-#3 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\rotas.php(10): App\Controller\CorrentistaController::Save()
-#4 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\index.php(5): include('C:\\Users\\Usuari...')
-#5 C:\Users\Usuario\Desktop\Api_Banco_Digital\index.php(3): include('C:\\Users\\Usuari...')
-#6 {main}
+#0 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\DAO\ChavePixDAO.php(31): PDOStatement->execute()
+#1 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\DAO\ChavePixDAO.php(18): App\DAO\ChavePixDAO->Insert(Object(App\Model\ChavePixModel))
+#2 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\Model\ChavePixModel.php(13): App\DAO\ChavePixDAO->Save(Object(App\Model\ChavePixModel))
+#3 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\Controller\ChavePixController.php(24): App\Model\ChavePixModel->Save()
+#4 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\rotas.php(43): App\Controller\ChavePixController::SalvarChavePix()
+#5 C:\Users\Usuario\Desktop\Api_Banco_Digital\App\index.php(5): include('C:\\Users\\Usuari...')
+#6 C:\Users\Usuario\Desktop\Api_Banco_Digital\index.php(3): include('C:\\Users\\Usuari...')
+#7 {main}
