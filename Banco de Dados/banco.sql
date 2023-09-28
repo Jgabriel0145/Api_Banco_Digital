@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS `db_banco_digital`.`chave_pix` (
   `tipo` ENUM('cpf', 'email', 'telefone', 'personalizada') NOT NULL,
   `id_conta` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `chave_UNIQUE` (`chave` ASC) VISIBLE,
   INDEX `fk_id_conta_idx` (`id_conta` ASC) VISIBLE,
   CONSTRAINT `fk_chave_pix_conta`
     FOREIGN KEY (`id_conta`)
